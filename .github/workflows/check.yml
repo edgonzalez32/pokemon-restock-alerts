@@ -33,12 +33,22 @@ jobs:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           LOOP_SECONDS: "230"
           INTERVAL: "60"
-        run: python checker.py
+        run: |
+          if [ -z "$NTFY_TOPIC" ]; then
+            # No alert topic yet: do one test pass and throw its memory away,
+            # so the first real run still alerts on anything already in stock.
+            echo "NTFY_TOPIC secret not set; running a single test pass."
+            STATE_PATH=/tmp/dry-state.json LOOP_SECONDS=0 python checker.py
+            rm -f state.json
+          else
+            python checker.py
+          fi
 
       - name: Save state for the next run and the dashboard
         if: always()
         run: |
-          mkdir -p /tmp/status && cp state.json status.json /tmp/status/ 2>/dev/null || true
+          mkdir -p /tmp/status && cp status.json /tmp/status/ 2>/dev/null || true
+          cp state.json /tmp/status/ 2>/dev/null || true
           cd /tmp/status
           git init -q -b status
           git config user.name "restock-bot"

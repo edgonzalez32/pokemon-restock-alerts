@@ -225,6 +225,8 @@ class Checker:
             except Exception as exc:
                 print(f"  ! Target fetch failed for {store['name']}: {exc}", file=sys.stderr)
                 continue
+            print(f"  {store['name']} ({store['id']}): {len(results)} products; " + ", ".join(
+                f"{names.get(t, t)}={r['online']}/{r['store']}" for t, r in results.items()), flush=True)
             for tcin, r in results.items():
                 name = names.get(tcin, r["title"] or tcin)
                 item = self.state["items"].setdefault(tcin, {"name": name, "stores": {}})
