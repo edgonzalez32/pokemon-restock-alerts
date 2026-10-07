@@ -28,9 +28,13 @@ jobs:
         with:
           python-version: "3.12"
 
+      - run: pip install -q cryptography
+
       - name: Check Target and send alerts
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          WEBPUSH_SUBSCRIPTIONS: ${{ secrets.WEBPUSH_SUBSCRIPTIONS }}
+          VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
           LOOP_SECONDS: "230"
           INTERVAL: "60"
         run: |

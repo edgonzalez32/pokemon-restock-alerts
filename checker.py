@@ -79,10 +79,26 @@ def load_json(path: str, default):
 # ----------------------------------------------------------- notification
 
 class Notifier:
-    def __init__(self, topic: str | None, server: str = "https://ntfy.sh"):
+    def __init__(self, topic: str | None, server: str = "https://ntfy.sh",
+                 push_subs: list[dict] | None = None, vapid_key: str | None = None):
         self.topic = topic
         self.server = server.rstrip("/")
+        self.push_subs = push_subs or []
+        self.vapid_key = vapid_key
         self.sent: list[dict] = []
+
+    def web_push(self, title: str, message: str, url: str | None, priority: int) -> None:
+        if not (self.push_subs and self.vapid_key):
+            return
+        import webpush  # needs `cryptography`; only loaded when the app is set up
+        msg = {"title": title, "body": message, "url": url, "urgent": priority >= 5}
+        for sub in self.push_subs:
+            try:
+                status = webpush.send(sub, msg, self.vapid_key)
+                if status >= 300:
+                    print(f"  ! app push returned HTTP {status}", file=sys.stderr)
+            except Exception as exc:
+                print(f"  ! app push failed: {exc}", file=sys.stderr)
 
     def send(self, title: str, message: str, url: str | None = None,
              priority: int = 3, tags: list[str] | None = None) -> None:
@@ -93,6 +109,7 @@ class Notifier:
             payload["actions"] = [{"action": "view", "label": "Open", "url": url}]
         self.sent.append(payload)
         print(f"[notify p{priority}] {title}: {message} {url or ''}", flush=True)
+        self.web_push(title, message, url, priority)
         if not self.topic:
             return
         req = urllib.request.Request(
@@ -345,8 +362,15 @@ def main():
     state_path = os.environ.get("STATE_PATH", "state.json")
     status_path = os.environ.get("STATUS_PATH", "status.json")
     state = load_json(state_path, {})
+    subs = json.loads(os.environ.get("WEBPUSH_SUBSCRIPTIONS") or "[]")
     notifier = Notifier(os.environ.get("NTFY_TOPIC") or None,
-                        os.environ.get("NTFY_SERVER", "https://ntfy.sh"))
+                        os.environ.get("NTFY_SERVER", "https://ntfy.sh"),
+                        subs if isinstance(subs, list) else [subs],
+                        os.environ.get("VAPID_PRIVATE_KEY") or None)
+    if os.environ.get("SEND_TEST_PUSH"):
+        notifier.send("Restock Radar is connected", "You'll get alerts here when 30th Celebration stock shows up.",
+                      "https://www.target.com/s?searchTerm=pokemon+30th+celebration", priority=3)
+        return
     checker = Checker(cfg, state, notifier)
     loop_for = int(os.environ.get("LOOP_SECONDS", "0"))
     interval = int(os.environ.get("INTERVAL", "60"))

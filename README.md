@@ -9,7 +9,11 @@ Watches Target.com plus two Philadelphia Targets (Roxborough and City Ave) for e
   Friday-morning Target vendor reminders, Thursday Walmart reminders, Pokémon Center queue windows
   (Mon–Wed ~11 AM ET), and release days (Oct 30, Nov 6).
 - **Safety net:** if Target checks fail 10 times in a row you get a warning, so silence means "nothing in stock", not "broken".
-- **Dashboard:** `docs/index.html`, served by GitHub Pages.
+- **iPhone app (Restock Radar):** `docs/` is an installable web app served by GitHub Pages at
+  https://edgonzalez32.github.io/pokemon-restock-alerts/. Add it to your Home Screen from Safari,
+  open it, tap **Turn on alerts**, and save the code it shows as the `WEBPUSH_SUBSCRIPTIONS` secret.
+  Alerts then arrive as native iPhone notifications; tapping one opens the product page.
+  Needs iOS 16.4+ and the `VAPID_PRIVATE_KEY` secret. Use the **Send test alert** workflow to check.
 
 Alerts only. It never buys anything; checkout is yours.
 
