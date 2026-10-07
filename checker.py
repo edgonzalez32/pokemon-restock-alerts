@@ -256,10 +256,16 @@ class Checker:
         self.state["last_check"] = now.isoformat(timespec="seconds")
 
     def discover(self, now):
+        # Target's search endpoint often refuses cloud servers, and new listings
+        # don't need minute-level checks, so try it at most every 20 minutes.
+        last = self.state.get("last_search")
+        if last and now - datetime.fromisoformat(last) < timedelta(minutes=20):
+            return
+        self.state["last_search"] = now.isoformat(timespec="seconds")
         try:
             found = self.search_fn(self.cfg)
         except Exception as exc:
-            print(f"  ! Target search failed: {exc}", file=sys.stderr)
+            print(f"  (new-listing search skipped: Target said {exc})", flush=True)
             return
         watched = {p["tcin"] for p in self.cfg["target_products"]}
         seen = set(self.state["seen_tcins"])

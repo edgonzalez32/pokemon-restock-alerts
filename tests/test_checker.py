@@ -83,9 +83,10 @@ class Tests(unittest.TestCase):
         self.assertTrue(n.sent[0]["title"].startswith("Target City Ave: Booster Bundle"))
 
     def test_discovery_skips_first_run_and_marketplace(self):
-        c, fake, n, _ = make()
+        c, fake, n, clock = make()
         fake.search = [{"tcin": "999", "title": "30th Celebration Old", "price": 20.0, "marketplace": False}]
         c.run_pass()
+        clock["now"] = clock["now"] + checker.timedelta(minutes=21)
         self.assertEqual(n.sent, [])
         fake.search += [{"tcin": "111", "title": "Pokemon 30th Celebration Ultra-Premium Collection", "price": 179.99, "marketplace": False},
                         {"tcin": "222", "title": "Pokemon 30th Celebration ETB 2-pack", "price": 139.0, "marketplace": True},
