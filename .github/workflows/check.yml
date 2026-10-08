@@ -69,4 +69,11 @@ jobs:
         if: ${{ !cancelled() }}
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh workflow run check.yml --repo "${{ github.repository }}" --ref main
+        run: |
+          # A failed dispatch breaks the relay until the backstop cron fires,
+          # which GitHub also skips, so retry a few times.
+          for wait in 5 15 45 0; do
+            gh workflow run check.yml --repo "${{ github.repository }}" --ref main && exit 0
+            [ "$wait" -gt 0 ] && sleep "$wait"
+          done
+          exit 1
