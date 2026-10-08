@@ -37,6 +37,8 @@ AVAILABLE = {"IN_STOCK", "LIMITED_STOCK", "PRE_ORDER_SELLABLE", "AVAILABLE"}
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/129.0 Safari/537.36")
 MAX_EVENTS = 60
+SOURCE = os.environ.get("CHECKER_SOURCE", "github")
+MAC_FRESH_SECONDS = 180
 OUTAGE_PASSES = 30
 DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
@@ -339,6 +341,7 @@ class Checker:
             st["failures"] = 0
             ct["count"] += 1
             st["last_ok"] = now.isoformat(timespec="seconds")
+            st["ok_source"] = SOURCE
         else:
             st["failures"] += 1
             # Target refuses some cloud servers off and on, so only warn about a
@@ -360,6 +363,7 @@ def write_status(cfg, state, path):
         "last_check": state.get("last_check"),
         "last_ok": state.get("last_ok"),
         "failing": state.get("failures", 0) >= 3,
+        "source": state.get("ok_source", "github"),
         "checks_today": state["checks_today"]["count"],
         "stores": cfg["target_stores"],
         "items": [dict(tcin=p["tcin"], msrp=p["msrp"], **state["items"].get(p["tcin"], {"name": p["name"]}))
@@ -368,6 +372,13 @@ def write_status(cfg, state, path):
     }
     with open(path, "w") as f:
         json.dump(status, f, indent=1)
+
+
+def mac_is_checking(state: dict) -> bool:
+    if state.get("ok_source") != "mac" or not state.get("last_ok"):
+        return False
+    age = datetime.now(ZoneInfo("UTC")) - datetime.fromisoformat(state["last_ok"])
+    return age.total_seconds() < MAC_FRESH_SECONDS
 
 
 def main():
@@ -384,6 +395,14 @@ def main():
     if os.environ.get("SEND_TEST_PUSH"):
         notifier.send("Restock Radar is connected", "You'll get alerts here when 30th Celebration stock shows up.",
                       "https://www.target.com/s?searchTerm=pokemon+30th+celebration", priority=3)
+        return
+    loop_for = int(os.environ.get("LOOP_SECONDS", "0"))
+    if SOURCE == "github" and mac_is_checking(state):
+        # A home computer is checking (Target doesn't block it), so stand by
+        # and leave the shared state alone. The next run looks again.
+        print("Mac checker is active; GitHub standing by.", flush=True)
+        open("standby", "w").close()
+        time.sleep(loop_for)
         return
     checker = Checker(cfg, state, notifier)
     loop_for = int(os.environ.get("LOOP_SECONDS", "0"))

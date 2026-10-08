@@ -55,6 +55,7 @@ jobs:
       - name: Save state for the next run and the dashboard
         if: always()
         run: |
+          if [ -f standby ]; then echo "Standing by; state left to the Mac."; exit 0; fi
           mkdir -p /tmp/status && cp status.json /tmp/status/ 2>/dev/null || true
           cp state.json /tmp/status/ 2>/dev/null || true
           cd /tmp/status

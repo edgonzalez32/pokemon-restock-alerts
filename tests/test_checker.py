@@ -145,5 +145,14 @@ class Tests(unittest.TestCase):
         self.assertEqual(st["events"][0]["kind"], "online")
 
 
+    def test_github_stands_by_while_mac_is_fresh(self):
+        now = datetime.now(TZ)
+        fresh = {"ok_source": "mac", "last_ok": now.isoformat()}
+        stale = {"ok_source": "mac", "last_ok": (now - checker.timedelta(minutes=5)).isoformat()}
+        self.assertTrue(checker.mac_is_checking(fresh))
+        self.assertFalse(checker.mac_is_checking(stale))
+        self.assertFalse(checker.mac_is_checking({"ok_source": "github", "last_ok": now.isoformat()}))
+
+
 if __name__ == "__main__":
     unittest.main()
