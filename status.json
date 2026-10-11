@@ -1,0 +1,401 @@
+{
+ "last_check": "2026-10-11T01:52:42-04:00",
+ "last_ok": "2026-10-11T01:52:42-04:00",
+ "failing": false,
+ "source": "github",
+ "checks_today": 26,
+ "stores": [
+  {
+   "id": "3247",
+   "name": "Target Roxborough",
+   "address": "7162 Ridge Ave"
+  },
+  {
+   "id": "2124",
+   "name": "Target City Ave",
+   "address": "4000 Monument Rd"
+  }
+ ],
+ "items": [
+  {
+   "tcin": "1010892076",
+   "msrp": 49.99,
+   "name": "Elite Trainer Box",
+   "stores": {
+    "Target Roxborough": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    },
+    "Target City Ave": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    }
+   },
+   "url": "https://www.target.com/p/-/A-1010892076",
+   "checked": "2026-10-11T01:52:42-04:00",
+   "online": "OUT_OF_STOCK"
+  },
+  {
+   "tcin": "1011407490",
+   "msrp": 24.99,
+   "name": "Booster Bundle",
+   "stores": {
+    "Target Roxborough": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    },
+    "Target City Ave": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    }
+   },
+   "url": "https://www.target.com/p/-/A-1011407490",
+   "checked": "2026-10-11T01:52:42-04:00",
+   "online": "OUT_OF_STOCK"
+  },
+  {
+   "tcin": "1010892068",
+   "msrp": 21.99,
+   "name": "Sylveon ex Box",
+   "stores": {
+    "Target Roxborough": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    },
+    "Target City Ave": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    }
+   },
+   "url": "https://www.target.com/p/-/A-1010892068",
+   "checked": "2026-10-11T01:52:42-04:00",
+   "online": "OUT_OF_STOCK"
+  },
+  {
+   "tcin": "1010892065",
+   "msrp": 21.99,
+   "name": "Greninja ex Box",
+   "stores": {
+    "Target Roxborough": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    },
+    "Target City Ave": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    }
+   },
+   "url": "https://www.target.com/p/-/A-1010892065",
+   "checked": "2026-10-11T01:52:42-04:00",
+   "online": "OUT_OF_STOCK"
+  },
+  {
+   "tcin": "1010892069",
+   "msrp": 21.99,
+   "name": "Tin (Sylveon or Greninja)",
+   "stores": {
+    "Target Roxborough": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    },
+    "Target City Ave": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    }
+   },
+   "url": "https://www.target.com/p/-/A-1010892069",
+   "checked": "2026-10-11T01:52:42-04:00",
+   "online": "OUT_OF_STOCK"
+  },
+  {
+   "tcin": "1012422107",
+   "msrp": 9.99,
+   "name": "Mini Tin",
+   "stores": {
+    "Target Roxborough": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    },
+    "Target City Ave": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    }
+   },
+   "url": "https://www.target.com/p/-/A-1012422107",
+   "checked": "2026-10-11T01:52:42-04:00",
+   "online": "OUT_OF_STOCK"
+  },
+  {
+   "tcin": "1010892074",
+   "msrp": 31.99,
+   "name": "Binder Collection",
+   "stores": {
+    "Target Roxborough": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    },
+    "Target City Ave": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    }
+   },
+   "url": "https://www.target.com/p/-/A-1010892074",
+   "checked": "2026-10-11T01:52:42-04:00",
+   "online": "OUT_OF_STOCK"
+  },
+  {
+   "tcin": "1010892067",
+   "msrp": 14.99,
+   "name": "Poster Collection",
+   "stores": {
+    "Target Roxborough": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    },
+    "Target City Ave": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    }
+   },
+   "url": "https://www.target.com/p/-/A-1010892067",
+   "checked": "2026-10-11T01:52:42-04:00",
+   "online": "OUT_OF_STOCK"
+  },
+  {
+   "tcin": "1010892078",
+   "msrp": 14.99,
+   "name": "Tech Sticker Collection",
+   "stores": {
+    "Target Roxborough": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    },
+    "Target City Ave": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    }
+   },
+   "url": "https://www.target.com/p/-/A-1010892078",
+   "checked": "2026-10-11T01:52:42-04:00",
+   "online": "OUT_OF_STOCK"
+  },
+  {
+   "tcin": "1010892070",
+   "msrp": 9.99,
+   "name": "Knock Out Collection",
+   "stores": {
+    "Target Roxborough": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    },
+    "Target City Ave": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    }
+   },
+   "url": "https://www.target.com/p/-/A-1010892070",
+   "checked": "2026-10-11T01:52:42-04:00",
+   "online": "OUT_OF_STOCK"
+  },
+  {
+   "tcin": "1010892075",
+   "msrp": 19.99,
+   "name": "Battle Deck: Espeon ex",
+   "stores": {
+    "Target Roxborough": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    },
+    "Target City Ave": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    }
+   },
+   "url": "https://www.target.com/p/-/A-1010892075",
+   "checked": "2026-10-11T01:52:42-04:00",
+   "online": "OUT_OF_STOCK"
+  },
+  {
+   "tcin": "1010892071",
+   "msrp": 19.99,
+   "name": "Battle Deck: Umbreon ex",
+   "stores": {
+    "Target Roxborough": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    },
+    "Target City Ave": {
+     "status": "UNAVAILABLE",
+     "qty": 0
+    }
+   },
+   "url": "https://www.target.com/p/-/A-1010892071",
+   "checked": "2026-10-11T01:52:42-04:00",
+   "online": "OUT_OF_STOCK"
+  }
+ ],
+ "events": [
+  {
+   "at": "2026-10-11T01:30:11-04:00",
+   "kind": "error",
+   "text": "Target checks working again",
+   "url": null
+  },
+  {
+   "at": "2026-10-11T01:20:33-04:00",
+   "kind": "error",
+   "text": "Target checks failing",
+   "url": null
+  },
+  {
+   "at": "2026-10-10T18:25:20-04:00",
+   "kind": "error",
+   "text": "Target checks working again",
+   "url": null
+  },
+  {
+   "at": "2026-10-10T18:20:18-04:00",
+   "kind": "error",
+   "text": "Target checks failing",
+   "url": null
+  },
+  {
+   "at": "2026-10-10T09:37:33-04:00",
+   "kind": "error",
+   "text": "Target checks working again",
+   "url": null
+  },
+  {
+   "at": "2026-10-10T09:32:34-04:00",
+   "kind": "error",
+   "text": "Target checks failing",
+   "url": null
+  },
+  {
+   "at": "2026-10-10T02:15:34-04:00",
+   "kind": "error",
+   "text": "Target checks working again",
+   "url": null
+  },
+  {
+   "at": "2026-10-10T02:15:19-04:00",
+   "kind": "error",
+   "text": "Target checks failing",
+   "url": null
+  },
+  {
+   "at": "2026-10-09T18:36:33-04:00",
+   "kind": "error",
+   "text": "Target checks working again",
+   "url": null
+  },
+  {
+   "at": "2026-10-09T18:26:40-04:00",
+   "kind": "error",
+   "text": "Target checks failing",
+   "url": null
+  },
+  {
+   "at": "2026-10-09T07:40:58-04:00",
+   "kind": "reminder",
+   "text": "Target vendor morning",
+   "url": "https://www.target.com/store-locator/find-stores/19128"
+  },
+  {
+   "at": "2026-10-09T06:20:25-04:00",
+   "kind": "online",
+   "text": "Elite Trainer Box in stock online at Target.com",
+   "url": "https://www.target.com/p/-/A-1010892076"
+  },
+  {
+   "at": "2026-10-09T05:59:20-04:00",
+   "kind": "online",
+   "text": "Poster Collection in stock online at Target.com",
+   "url": "https://www.target.com/p/-/A-1010892067"
+  },
+  {
+   "at": "2026-10-09T05:32:49-04:00",
+   "kind": "online",
+   "text": "Sylveon ex Box in stock online at Target.com",
+   "url": "https://www.target.com/p/-/A-1010892068"
+  },
+  {
+   "at": "2026-10-09T05:24:56-04:00",
+   "kind": "online",
+   "text": "Booster Bundle in stock online at Target.com",
+   "url": "https://www.target.com/p/-/A-1011407490"
+  },
+  {
+   "at": "2026-10-09T05:16:50-04:00",
+   "kind": "online",
+   "text": "Elite Trainer Box in stock online at Target.com",
+   "url": "https://www.target.com/p/-/A-1010892076"
+  },
+  {
+   "at": "2026-10-09T05:13:30-04:00",
+   "kind": "online",
+   "text": "Mini Tin in stock online at Target.com",
+   "url": "https://www.target.com/p/-/A-1012422107"
+  },
+  {
+   "at": "2026-10-09T02:19:07-04:00",
+   "kind": "error",
+   "text": "Target checks working again",
+   "url": null
+  },
+  {
+   "at": "2026-10-09T02:09:22-04:00",
+   "kind": "error",
+   "text": "Target checks failing",
+   "url": null
+  },
+  {
+   "at": "2026-10-08T11:18:34-04:00",
+   "kind": "error",
+   "text": "Target checks working again",
+   "url": null
+  },
+  {
+   "at": "2026-10-08T11:18:12-04:00",
+   "kind": "error",
+   "text": "Target checks failing",
+   "url": null
+  },
+  {
+   "at": "2026-10-08T08:27:07-04:00",
+   "kind": "error",
+   "text": "Target checks failing",
+   "url": null
+  },
+  {
+   "at": "2026-10-08T07:42:56-04:00",
+   "kind": "error",
+   "text": "Target checks failing",
+   "url": null
+  },
+  {
+   "at": "2026-10-08T07:15:27-04:00",
+   "kind": "error",
+   "text": "Target checks failing",
+   "url": null
+  },
+  {
+   "at": "2026-10-08T07:15:26-04:00",
+   "kind": "reminder",
+   "text": "Walmart vendor window",
+   "url": "https://www.walmart.com/search?q=pokemon+30th+celebration"
+  },
+  {
+   "at": "2026-10-08T06:34:38-04:00",
+   "kind": "error",
+   "text": "Target checks failing",
+   "url": null
+  },
+  {
+   "at": "2026-10-08T06:20:55-04:00",
+   "kind": "error",
+   "text": "Target checks failing",
+   "url": null
+  }
+ ]
+}
