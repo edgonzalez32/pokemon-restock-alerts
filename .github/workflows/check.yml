@@ -1,16 +1,14 @@
 name: Restock check
 
-# GitHub often skips frequent scheduled runs, so each run starts the next one
-# itself when it finishes (a relay). The schedule is only a backstop that
-# restarts the relay if it ever breaks. Disable this workflow to stop it.
+# Turned off 2026-10-20 at Ed's request: no schedule and no self-relay.
+# It still runs once if someone taps "Run workflow" in the Actions tab.
+# To turn it back on, restore the schedule and "Start the next run" step
+# from git history (commit 6526c39).
 on:
-  schedule:
-    - cron: "*/10 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
-  actions: write
 
 concurrency:
   group: restock-check
@@ -18,6 +16,8 @@ concurrency:
 
 jobs:
   check:
+    # Skip any relay run that was already queued before this change.
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
@@ -64,16 +64,3 @@ jobs:
           git config user.email "restock-bot@users.noreply.github.com"
           git add -A && git commit -q -m "status $(date -u +%FT%TZ)"
           git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" status
-
-      - name: Start the next run
-        if: ${{ !cancelled() }}
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          # A failed dispatch breaks the relay until the backstop cron fires,
-          # which GitHub also skips, so retry a few times.
-          for wait in 5 15 45 0; do
-            gh workflow run check.yml --repo "${{ github.repository }}" --ref main && exit 0
-            [ "$wait" -gt 0 ] && sleep "$wait"
-          done
-          exit 1
